@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'task.dart';
+import 'storage_service.dart';
+import 'date_helper.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,54 +10,63 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Study Planner', home: HomePage());
+    return MaterialApp(title: 'Study Planner Test', home: TestScreen());
   }
 }
 
-class HomePage extends StatefulWidget {
+class TestScreen extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _TestScreenState createState() => _TestScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _TestScreenState extends State<TestScreen> {
   List<Task> tasks = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadTasks();
+  }
+
+  Future<void> _loadTasks() async {
+    final loadedTasks = await StorageService.loadTasks();
+    setState(() {
+      tasks = loadedTasks;
+    });
+  }
+
+  Future<void> _addTestTask() async {
+    final newTask = Task(
+      title: 'Test Task ${tasks.length + 1}',
+      description: 'This is a test',
+      dueDate: DateTime.now(),
+    );
+
+    tasks.add(newTask);
+    await StorageService.saveTasks(tasks);
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('My Study Planner'),
-        backgroundColor: Colors.blue,
-      ),
+      appBar: AppBar(title: Text('Storage Test'), backgroundColor: Colors.blue),
       body: tasks.isEmpty
-          ? Center(child: Text('No tasks yet! Tap + to add one'))
+          ? Center(child: Text('No tasks. Tap + to test storage!'))
           : ListView.builder(
               itemCount: tasks.length,
               itemBuilder: (context, index) {
                 final task = tasks[index];
                 return ListTile(
                   title: Text(task.title),
-                  subtitle: Text(task.description),
-                  trailing: Text('${task.dueDate.day}/${task.dueDate.month}'),
+                  subtitle: Text(DateHelper.formatDate(task.dueDate)),
                 );
               },
             ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _addTask,
+        onPressed: _addTestTask,
         child: Icon(Icons.add),
       ),
     );
-  }
-
-  void _addTask() {
-    setState(() {
-      tasks.add(
-        Task(
-          title: 'Study Flutter',
-          description: 'Learn about widgets',
-          dueDate: DateTime.now(),
-        ),
-      );
-    });
   }
 }

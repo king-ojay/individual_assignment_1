@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Task {
   final String title;
   final String description;
@@ -13,6 +15,7 @@ class Task {
     this.isCompleted = false,
   });
 
+  // Convert to JSON
   Map<String, dynamic> toJson() {
     return {
       'title': title,
@@ -23,6 +26,7 @@ class Task {
     };
   }
 
+  // Create from JSON when loading
   factory Task.fromJson(Map<String, dynamic> json) {
     return Task(
       title: json['title'],
