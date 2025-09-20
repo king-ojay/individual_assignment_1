@@ -6,7 +6,11 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Study Planner', home: TodayScreen());
+    return MaterialApp(
+      title: 'Study Planner',
+      home: TodayScreen(),
+    );
   }
 }
