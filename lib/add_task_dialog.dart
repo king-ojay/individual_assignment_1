@@ -27,8 +27,13 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
             decoration: InputDecoration(labelText: 'Description'),
           ),
           SizedBox(height: 16),
-          Text(
-            'Due: ${_selectedDate.day}/${_selectedDate.month}/${_selectedDate.year}',
+          ListTile(
+            leading: Icon(Icons.calendar_today),
+            title: Text('Due Date'),
+            subtitle: Text(
+              '${_selectedDate.day}/${_selectedDate.month}/${_selectedDate.year}',
+            ),
+            onTap: _pickDate,
           ),
         ],
       ),
@@ -52,5 +57,19 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
         ),
       ],
     );
+  }
+
+  Future<void> _pickDate() async {
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate,
+      firstDate: DateTime.now(),
+      lastDate: DateTime.now().add(Duration(days: 365)),
+    );
+    if (picked != null) {
+      setState(() {
+        _selectedDate = picked;
+      });
+    }
   }
 }

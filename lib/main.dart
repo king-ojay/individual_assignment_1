@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'today_screen.dart';
-import 'calendar_screen.dart';
+import 'calender_screen.dart';
 import 'settings_screen.dart';
 
 void main() {
@@ -10,10 +10,7 @@ void main() {
 class StudyPlannerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Study Planner',
-      home: MainScreen(),
-    );
+    return MaterialApp(title: 'Study Planner', home: MainScreen());
   }
 }
 
@@ -43,10 +40,7 @@ class _MainScreenState extends State<MainScreen> {
           });
         },
         items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.today),
-            label: 'Today',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.today), label: 'Today'),
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_month),
             label: 'Calendar',
