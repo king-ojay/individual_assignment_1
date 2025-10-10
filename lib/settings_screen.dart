@@ -6,6 +6,7 @@ class SettingsScreen extends StatefulWidget {
   _SettingsScreenState createState() => _SettingsScreenState();
 }
 
+// Settings screen with options to enable or disable reminders and view storage method
 class _SettingsScreenState extends State<SettingsScreen> {
   bool _remindersEnabled = true;
   int _totalTasks = 0;
@@ -16,6 +17,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     _loadStats();
   }
 
+  // this loads the  total number of tasks for display
   Future<void> _loadStats() async {
     final tasks = await StorageService.loadTasks();
     setState(() {
@@ -26,10 +28,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Settings'),
-        backgroundColor: Colors.blue,
-      ),
+      appBar: AppBar(title: Text('Settings'), backgroundColor: Colors.blue),
       body: ListView(
         padding: EdgeInsets.all(16),
         children: [

@@ -8,12 +8,12 @@ class DateHelper {
         date1.day == date2.day;
   }
 
-  // Format date nicely
+  // Format date
   static String formatDate(DateTime date) {
     return DateFormat('MMM dd, yyyy').format(date);
   }
 
-  // Format time nicely
+  // Format time
   static String formatTime(DateTime time) {
     return DateFormat('hh:mm a').format(time);
   }

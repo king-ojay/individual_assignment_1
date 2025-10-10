@@ -16,7 +16,7 @@ class StorageService {
     await prefs.setStringList(_key, jsonList);
   }
 
-  // Load tasks from local storage
+  // Load tasks from the local storage
   static Future<List<Task>> loadTasks() async {
     final prefs = await SharedPreferences.getInstance();
     // Get saved JSON strings, or empty list if none exist

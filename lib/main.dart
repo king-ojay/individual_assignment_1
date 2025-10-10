@@ -15,6 +15,7 @@ class StudyPlannerApp extends StatelessWidget {
   }
 }
 
+// main screen with bottom navigation to switch between Today, Calendar, and Settings
 class MainScreen extends StatefulWidget {
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -22,7 +23,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
-
+  // List of screens for navigation
   final List<Widget> _screens = [
     TodayScreen(),
     CalendarScreen(),
