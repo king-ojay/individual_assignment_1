@@ -18,15 +18,7 @@ A Flutter-based mobile application for managing study tasks with calendar integr
 - **Storage**: SharedPreferences for local data persistence
 - **State Management**: StatefulWidget with setState
 
-## Project Structure
-lib/
-├── main.dart              # App entry point and navigation
-├── task.dart              # Task model and data structure
-├── storage_service.dart   # Local storage operations
-├── today_screen.dart      # Today's tasks view
-├── calender_screen.dart   # Calendar and task view by date
-├── settings_screen.dart   # App settings and preferences
-└── add_task_dialog.dart   # Dialog for creating new tasks
+
 ## Installation & Setup
 
 1. Clone the repository
